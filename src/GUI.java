@@ -80,8 +80,8 @@ public class GUI {
                         System.out.println("Selection Sort");
                         sort.SelectionSort(unsortedInput);
                         sort.printArray(unsortedInput);
-                        mutationCounter.setText(String.valueOf((sort.y)));
-                        comparisonCounter.setText(String.valueOf(sort.x));
+                        mutationCounter.setText(String.valueOf((sort.mutation)));
+                        comparisonCounter.setText(String.valueOf(sort.comparison));
 
                         break;
 
@@ -91,6 +91,8 @@ public class GUI {
 
                         sort.BubbleSort(unsortedInput);
                         sort.printArray(unsortedInput);
+                        mutationCounter.setText(String.valueOf((sort.mutation)));
+                        comparisonCounter.setText(String.valueOf(sort.comparison));
 
                         break;
 
@@ -98,6 +100,8 @@ public class GUI {
                         System.out.println("Insertion Sort");
                         sort.InsertionSort(unsortedInput);
                         sort.printArray(unsortedInput);
+                        mutationCounter.setText(String.valueOf((sort.mutation)));
+                        comparisonCounter.setText(String.valueOf(sort.comparison));
                         break;
 
                     case 3:
@@ -106,6 +110,8 @@ public class GUI {
                         sort.partition(unsortedInput, 0, unsortedInput.length - 1);
                         sort.QuickSort(unsortedInput, 0, unsortedInput.length - 1);
                         sort.printArray(unsortedInput);
+                        mutationCounter.setText(String.valueOf((sort.mutation)));
+                        comparisonCounter.setText(String.valueOf(sort.comparison));
                         break;
                     case 4:
                         System.out.println("Heap Sort");

@@ -1,11 +1,11 @@
 public class Sort {
-    int x = 0;
-    int y = 0;
+    int mutation = 0;
+    int comparison = 0;
 
     void SelectionSort(int[] arr) {
         int n = arr.length;
-        x = 0;
-        y = 0;
+        comparison = 0;
+        mutation = 0;
         // One by one move boundary of unsorted subarray
         for (int i = 0; i < n - 1; i++) {
             // Find the minimum element in unsorted array
@@ -13,14 +13,14 @@ public class Sort {
             for (int j = i + 1; j < n; j++) {
                 if (arr[j] < arr[min_idx])
                     min_idx = j;
-                x++;
+                comparison++;
             }
             // Swap the found minimum element with the first
             // element
             int temp = arr[min_idx];
             arr[min_idx] = arr[i];
             arr[i] = temp;
-            y++;
+            mutation++;
         }
     }
 
@@ -34,30 +34,39 @@ public class Sort {
     }
 
     void BubbleSort(int[] arr) {
+        comparison = 0;
+        mutation = 0;
         int n = arr.length;
-        for (int i = 0; i < n - 1; i++)
-            for (int j = 0; j < n - i - 1; j++)
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
                     // swap arr[j+1] and arr[j]
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
+                    comparison++;
                 }
+            }
+            mutation++;
+        }
     }
 
 
     void InsertionSort(int[] arr) {
+        comparison = 0;
+        mutation = 0;
         int n = arr.length;
         for (int i = 1; i < n; ++i) {
             int key = arr[i];
             int j = i - 1;
-
+            mutation++;
             /* Move elements of arr[0..i-1], that are
                greater than key, to one position ahead
                of their current position */
             while (j >= 0 && arr[j] > key) {
                 arr[j + 1] = arr[j];
                 j = j - 1;
+                comparison++;
             }
             arr[j + 1] = key;
         }
