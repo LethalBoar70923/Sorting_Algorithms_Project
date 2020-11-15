@@ -1,6 +1,7 @@
 public class Sort {
     int x = 0;
     int y = 0;
+
     void SelectionSort(int[] arr) {
         int n = arr.length;
         x = 0;
@@ -22,7 +23,6 @@ public class Sort {
             y++;
         }
     }
-
 
 
     // Prints the array
@@ -74,110 +74,52 @@ public class Sort {
            pivot and all greater elements to right
            of pivot */
 
-        int partition(int arr[], int low, int high)
-        {
-            int pivot = arr[high];
-            int i = (low-1); // index of smaller element
-            for (int j=low; j<high; j++)
-            {
-                // If current element is smaller than the pivot
-                if (arr[j] < pivot)
-                {
-                    i++;
+    int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = (low - 1); // index of smaller element
+        for (int j = low; j < high; j++) {
+            // If current element is smaller than the pivot
+            if (arr[j] < pivot) {
+                i++;
 
-                    // swap arr[i] and arr[j]
-                    int temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                }
+                // swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
-
-            // swap arr[i+1] and arr[high] (or pivot)
-            int temp = arr[i+1];
-            arr[i+1] = arr[high];
-            arr[high] = temp;
-
-            return i+1;
         }
 
+        // swap arr[i+1] and arr[high] (or pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        return i + 1;
+    }
 
 
-        /* The main function that implements QuickSort()
-          arr[] --> Array to be sorted,
-          low  --> Starting index,
-          high  --> Ending index */
-        void QuickSort(int arr[], int low, int high)
-        {
-            if (low < high)
-            {
+    /* The main function that implements QuickSort()
+      arr[] --> Array to be sorted,
+      low  --> Starting index,
+      high  --> Ending index */
+    void QuickSort(int[] arr, int low, int high) {
+        if (low < high) {
             /* pi is partitioning index, arr[pi] is
               now at right place */
-                int pi = partition(arr, low, high);
+            int pi = partition(arr, low, high);
 
-                // Recursively sort elements before
-                // partition and after partition
-                QuickSort(arr, low, pi-1);
-                QuickSort(arr, pi+1, high);
-            }
+            // Recursively sort elements before
+            // partition and after partition
+            QuickSort(arr, low, pi - 1);
+            QuickSort(arr, pi + 1, high);
         }
-
-        /* A utility function to print array of size n */
-
-
-
-    /*This code is contributed by Rajat Mishra */
-
-
-    static class heapSort {
-
-        heapSort(int[] arr, int size, int i) {
-
-            int largest = i;
-            int left = 2*i + 1;
-            int right = 2*i +2;
-            int temp;
-
-            if (left < size && arr[left] > arr [largest]) {
-
-                largest = left;
-
-            }
-
-            if (right < size && arr[right] > arr[largest]) {
-
-                largest = right;
-
-            }
-
-            if (largest != i) {
-
-                temp = arr[i];
-                arr[i] = arr[largest];
-                arr[largest] = temp;
-                new heapSort(arr, size, largest);
-
-
-            }
-
-        }
-
-        static void heapSort(int[] arr, int size)
-        {
-            int i;
-            int temp;
-            for (i = size / 2 - 1; i >= 0; i--) {
-                new heapSort(arr, size, i);
-            }
-
-            for (i=size-1; i>=0; i--)
-            {
-                temp = arr[0];
-                arr[0]= arr[i];
-                arr[i] = temp;
-                new heapSort(arr, i, 0);
-            }
-        }
-
     }
+
+
+
+
+
+
+
 
 }

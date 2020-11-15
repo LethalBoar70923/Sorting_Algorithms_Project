@@ -17,8 +17,8 @@ public class GUI {
     int[] unsortedInput;
     Sort sort = new Sort();
 
-    GUI() {
-
+    GUI() throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         JFrame frame = new JFrame("Sorting Method Selector");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
@@ -59,8 +59,6 @@ public class GUI {
 
                     case 0:
 
-
-
                         System.out.println("Selection Sort");
                         sort.SelectionSort(unsortedInput);
                         sort.printArray(unsortedInput);
@@ -79,25 +77,25 @@ public class GUI {
                         break;
 
                     case 2:
-                        ;
-
+                        System.out.println("Insertion Sort");
                         sort.InsertionSort(unsortedInput);
                         sort.printArray(unsortedInput);
                         break;
 
                     case 3:
 
-
-                        sort.partition(unsortedInput, 0, unsortedInput.length -1);
-                        sort.QuickSort(unsortedInput, 0, unsortedInput.length -1);
+                        System.out.println("Quick Sort");
+                        sort.partition(unsortedInput, 0, unsortedInput.length - 1);
+                        sort.QuickSort(unsortedInput, 0, unsortedInput.length - 1);
                         sort.printArray(unsortedInput);
                         break;
                     case 4:
                         System.out.println("Heap Sort");
-                        sort.QuickSort(unsortedInput, 0, unsortedInput.length -1);
+                        sort.QuickSort(unsortedInput, 0, unsortedInput.length - 1);
                         sort.printArray(unsortedInput);
-                }
 
+
+                }
 
             }
         });
@@ -106,13 +104,15 @@ public class GUI {
         randNumButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+
                 x = Integer.parseInt(maxRand.getText());
                 unsortedInput = new int[x];
 
                 for (int i = 0; i < unsortedInput.length; i++) {
 
                     unsortedInput[i] = new Random().nextInt(x) + 1;
-                    System.out.println(unsortedInput[i]);
+                    System.out.print(unsortedInput[i] + ",");
                 }
                 textField.setText(Arrays.toString(unsortedInput).replaceAll("\\[", "").replaceAll("]", "").replaceAll(" ", ""));
 
