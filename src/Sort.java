@@ -126,21 +126,22 @@ public class Sort {
     }
 
     void heapSort(int[] arr, int size, int i) {
+        mutation++;
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
         int temp;
 
-        if(left < size && arr[left] > arr [largest]) {
+        if (left < size && arr[left] > arr[largest]) {
 
             largest = left;
-
+            comparison++;
         }
 
         if (right < size && arr[right] > arr[largest]) {
 
             largest = right;
-
+            comparison++;
         }
 
         if (largest != i) {
@@ -148,10 +149,12 @@ public class Sort {
             arr[i] = arr[largest];
             arr[largest] = temp;
             heapSort(arr, size, largest);
+            comparison++;
         }
 
 
     }
+
     void heapSort(int[] arr, int size) {
 
         int i;
@@ -161,7 +164,7 @@ public class Sort {
             heapSort(arr, size, i);
 
         }
-        for (i = size -1; i >= 0; i--) {
+        for (i = size - 1; i >= 0; i--) {
             temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
@@ -171,6 +174,37 @@ public class Sort {
 
     }
 
+    int ShellSort(int arr[])
+    {
+        int n = arr.length;
+
+        // Start with a big gap, then reduce the gap
+        for (int gap = n/2; gap > 0; gap /= 2)
+        {
+            // Do a gapped insertion sort for this gap size.
+            // The first gap elements a[0..gap-1] are already
+            // in gapped order keep adding one more element
+            // until the entire array is gap sorted
+            for (int i = gap; i < n; i += 1)
+            {
+                // add a[i] to the elements that have been gap
+                // sorted save a[i] in temp and make a hole at
+                // position i
+                int temp = arr[i];
+
+                // shift earlier gap-sorted elements up until
+                // the correct location for a[i] is found
+                int j;
+                for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+                    arr[j] = arr[j - gap];
+
+                // put temp (the original a[i]) in its correct
+                // location
+                arr[j] = temp;
+            }
+        }
+        return 0;
+    }
 
 
 }

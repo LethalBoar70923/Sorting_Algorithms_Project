@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class GUI {
 
-    final String[] comboArr = new String[]{"Selection Sort", "Bubble Sort", "Insertion Sort", "Quick Sort", "Heap Sort"};
+    final String[] comboArr = new String[]{"Selection Sort", "Bubble Sort", "Insertion Sort", "Quick Sort", "Heap Sort", "Shell Sort"};
     JButton sortButton = new JButton();
     JButton randNumButton = new JButton();
     JPanel panel = new JPanel();
@@ -71,7 +71,8 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 unsortedInput = Arrays.stream(textField.getText().split(",")).mapToInt(Integer::parseInt).toArray();
                 int y = sortingSelector.getSelectedIndex();
-
+                sort.comparison = 0;
+                sort.mutation = 0;
 
                 switch (y) {
 
@@ -105,8 +106,7 @@ public class GUI {
                         break;
 
                     case 3:
-                        sort.comparison = 0;
-                        sort.mutation = 0;
+
                         System.out.println("Quick Sort");
                         sort.partition(unsortedInput, 0, unsortedInput.length - 1);
                         sort.QuickSort(unsortedInput, 0, unsortedInput.length - 1);
@@ -115,10 +115,16 @@ public class GUI {
                         comparisonCounter.setText(String.valueOf(sort.comparison));
                         break;
                     case 4:
+
                         System.out.println("Heap Sort");
                         sort.heapSort(unsortedInput, unsortedInput.length);
                         sort.printArray(unsortedInput);
-
+                        mutationCounter.setText(String.valueOf((sort.mutation)));
+                        comparisonCounter.setText(String.valueOf(sort.comparison));
+                    case 5:
+                        System.out.println("Shell Sort");
+                        sort.ShellSort(unsortedInput);
+                        sort.printArray(unsortedInput);
 
                 }
 
@@ -129,7 +135,6 @@ public class GUI {
         randNumButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
 
                 x = Integer.parseInt(maxRand.getText());
                 y = Integer.parseInt(minRand.getText());
