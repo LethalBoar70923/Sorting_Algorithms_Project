@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class GUI {
 
-    final String[] comboArr = new String[]{"Selection Sort", "Bubble Sort", "Insertion Sort", "Quick Sort"};
+    final String[] comboArr = new String[]{"Selection Sort", "Bubble Sort", "Insertion Sort", "Quick Sort", "Heap Sort"};
     JButton sortButton = new JButton();
     JButton randNumButton = new JButton();
     JPanel panel = new JPanel();
@@ -16,6 +16,7 @@ public class GUI {
     int x;
     int[] unsortedInput;
     Sort sort = new Sort();
+
     GUI() {
 
         JFrame frame = new JFrame("Sorting Method Selector");
@@ -25,12 +26,13 @@ public class GUI {
         randNumButton.setBounds(375, 400, 100, 20);
         sortingSelector.setBounds(225, 433, 130, 20);
         textField.setBounds(10, 433, 200, 20);
-        maxRand.setBounds(325, 400, 50, 20);
+        maxRand.setBounds(305, 400, 50, 20);
         textField.setToolTipText("Add an unsorted list of integers separated by a comma");
         sortButton.setText("Sort");
         randNumButton.setText("Rand Num");
         maxRand.setToolTipText("Enter the maximum value the random number generator can go to");
         randNumButton.setToolTipText("Generate a random set of integers to sort");
+        sortingSelector.setToolTipText("Select a sorting algorithm");
         panel.add(randNumButton);
         panel.add(sortButton);
         panel.add(maxRand);
@@ -49,19 +51,21 @@ public class GUI {
         sortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                unsortedInput = Arrays.stream(textField.getText().split(",")).mapToInt(Integer::parseInt).toArray();
+                int y = sortingSelector.getSelectedIndex();
 
-                int x = sortingSelector.getSelectedIndex();
 
-
-                switch (x) {
+                switch (y) {
 
                     case 0:
+
+
+
                         System.out.println("Selection Sort");
                         sort.SelectionSort(unsortedInput);
-
                         sort.printArray(unsortedInput);
-
-
+                        System.out.println(sort.x);
+                        System.out.println(sort.y);
 
                         break;
 
@@ -70,19 +74,28 @@ public class GUI {
                         System.out.println("Bubble Sort");
 
                         sort.BubbleSort(unsortedInput);
-
+                        sort.printArray(unsortedInput);
 
                         break;
 
                     case 2:
+                        ;
 
-                        System.out.println("Insertion Sort");
                         sort.InsertionSort(unsortedInput);
+                        sort.printArray(unsortedInput);
                         break;
 
                     case 3:
 
-                        System.out.println("Quick Sort");
+
+                        sort.partition(unsortedInput, 0, unsortedInput.length -1);
+                        sort.QuickSort(unsortedInput, 0, unsortedInput.length -1);
+                        sort.printArray(unsortedInput);
+                        break;
+                    case 4:
+                        System.out.println("Heap Sort");
+                        sort.QuickSort(unsortedInput, 0, unsortedInput.length -1);
+                        sort.printArray(unsortedInput);
                 }
 
 
@@ -101,10 +114,9 @@ public class GUI {
                     unsortedInput[i] = new Random().nextInt(x) + 1;
                     System.out.println(unsortedInput[i]);
                 }
-                textField.setText(Arrays.toString(unsortedInput).replaceAll("\\[", "").replaceAll("]", ""));
+                textField.setText(Arrays.toString(unsortedInput).replaceAll("\\[", "").replaceAll("]", "").replaceAll(" ", ""));
 
             }
-
 
         });
 
