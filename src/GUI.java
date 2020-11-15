@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Random;
 
 public class GUI {
@@ -11,7 +12,7 @@ public class GUI {
     JPanel panel = new JPanel();
     JComboBox sortingSelector = new JComboBox(comboArr);
     JTextField textField = new JTextField();
-    String[] unsortedInput;
+    int[] unsortedInput = new int[10];
 
     GUI() {
 
@@ -45,10 +46,11 @@ public class GUI {
 
                 int x = sortingSelector.getSelectedIndex();
 
+
                 switch (x) {
 
                     case 0:
-                        unsortedInput = textField.getText().split(",");
+                        System.out.println("Selection Sort");
 
                         for (int i = 0; i < unsortedInput.length; i++) {
                             System.out.println(unsortedInput[i]);
@@ -57,19 +59,19 @@ public class GUI {
                         break;
 
                     case 1:
-                        unsortedInput = textField.getText().split(",");
+
                         System.out.println("Bubble Sort");
 
                         break;
 
                     case 2:
-                        unsortedInput = textField.getText().split(",");
+
                         System.out.println("Insertion Sort");
 
                         break;
 
                     case 3:
-                        unsortedInput = textField.getText().split(",");
+
                         System.out.println("Quick Sort");
 
                 }
@@ -82,10 +84,13 @@ public class GUI {
         randNumButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int randnum = new Random().nextInt(11) + 1;
 
-                textField.setText(String.valueOf(randnum));
+                for (int i = 0; i < unsortedInput.length; i++) {
 
+                    unsortedInput[i] = new Random().nextInt(10) + 1;
+                    System.out.println(unsortedInput[i]);
+                }
+                textField.setText(Arrays.toString(unsortedInput).replaceAll("\\[", "").replaceAll("\\]", ""));
 
             }
 
