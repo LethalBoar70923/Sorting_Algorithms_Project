@@ -13,7 +13,11 @@ public class GUI {
     JComboBox sortingSelector = new JComboBox(comboArr);
     JTextField textField = new JTextField();
     JTextField maxRand = new JTextField();
+    JTextField minRand = new JTextField();
+    JTextField mutationCounter = new JTextField();
+    JTextField comparisonCounter = new JTextField();
     int x;
+    int y;
     int[] unsortedInput;
     Sort sort = new Sort();
 
@@ -27,24 +31,38 @@ public class GUI {
         sortingSelector.setBounds(225, 433, 130, 20);
         textField.setBounds(10, 433, 200, 20);
         maxRand.setBounds(305, 400, 50, 20);
+        minRand.setBounds(250, 400, 50, 20);
+        mutationCounter.setBounds(0, 350, 250, 20);
+        comparisonCounter.setBounds(250, 350, 250, 20);
+        mutationCounter.setEditable(false);
+        comparisonCounter.setEditable(false);
         textField.setToolTipText("Add an unsorted list of integers separated by a comma");
         sortButton.setText("Sort");
         randNumButton.setText("Rand Num");
         maxRand.setToolTipText("Enter the maximum value the random number generator can go to");
+        minRand.setToolTipText(("Enter the minimum value the random number generator can go to"));
         randNumButton.setToolTipText("Generate a random set of integers to sort");
         sortingSelector.setToolTipText("Select a sorting algorithm");
+        mutationCounter.setToolTipText("The amount of times the sorting algorithm swapped numbers");
+        comparisonCounter.setToolTipText("The amount of comparisons the sorting algorithm has done");
         panel.add(randNumButton);
         panel.add(sortButton);
         panel.add(maxRand);
+        panel.add(minRand);
         panel.add(sortingSelector);
         panel.add(textField);
+        panel.add(mutationCounter);
+        panel.add(comparisonCounter);
         panel.setLayout(null);
 
         frame.setContentPane(panel);
         sortingSelector.setVisible(true);
         maxRand.setVisible(true);
+        minRand.setVisible(true);
         sortButton.setVisible(true);
         randNumButton.setVisible(true);
+        comparisonCounter.setVisible(true);
+        mutationCounter.setVisible(true);
         frame.setVisible(true);
 
 
@@ -62,8 +80,8 @@ public class GUI {
                         System.out.println("Selection Sort");
                         sort.SelectionSort(unsortedInput);
                         sort.printArray(unsortedInput);
-                        System.out.println(sort.x);
-                        System.out.println(sort.y);
+                        mutationCounter.setText(String.valueOf((sort.y)));
+                        comparisonCounter.setText(String.valueOf(sort.x));
 
                         break;
 
@@ -107,11 +125,12 @@ public class GUI {
 
 
                 x = Integer.parseInt(maxRand.getText());
+                y = Integer.parseInt(minRand.getText());
                 unsortedInput = new int[x];
 
                 for (int i = 0; i < unsortedInput.length; i++) {
 
-                    unsortedInput[i] = new Random().nextInt(x) + 1;
+                    unsortedInput[i] = new Random().nextInt(x - y) + y;
                     System.out.print(unsortedInput[i] + ",");
                 }
                 textField.setText(Arrays.toString(unsortedInput).replaceAll("\\[", "").replaceAll("]", "").replaceAll(" ", ""));
