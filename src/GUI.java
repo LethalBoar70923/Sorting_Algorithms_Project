@@ -12,8 +12,10 @@ public class GUI {
     JPanel panel = new JPanel();
     JComboBox sortingSelector = new JComboBox(comboArr);
     JTextField textField = new JTextField();
-    int[] unsortedInput = new int[10];
-
+    JTextField maxRand = new JTextField();
+    int x;
+    int[] unsortedInput;
+    Sort sort = new Sort();
     GUI() {
 
         JFrame frame = new JFrame("Sorting Method Selector");
@@ -23,18 +25,22 @@ public class GUI {
         randNumButton.setBounds(375, 400, 100, 20);
         sortingSelector.setBounds(225, 433, 130, 20);
         textField.setBounds(10, 433, 200, 20);
+        maxRand.setBounds(325, 400, 50, 20);
         textField.setToolTipText("Add an unsorted list of integers separated by a comma");
         sortButton.setText("Sort");
         randNumButton.setText("Rand Num");
+        maxRand.setToolTipText("Enter the maximum value the random number generator can go to");
         randNumButton.setToolTipText("Generate a random set of integers to sort");
         panel.add(randNumButton);
         panel.add(sortButton);
+        panel.add(maxRand);
         panel.add(sortingSelector);
         panel.add(textField);
         panel.setLayout(null);
 
         frame.setContentPane(panel);
         sortingSelector.setVisible(true);
+        maxRand.setVisible(true);
         sortButton.setVisible(true);
         randNumButton.setVisible(true);
         frame.setVisible(true);
@@ -51,10 +57,11 @@ public class GUI {
 
                     case 0:
                         System.out.println("Selection Sort");
+                        sort.SelectionSort(unsortedInput);
 
-                        for (int i = 0; i < unsortedInput.length; i++) {
-                            System.out.println(unsortedInput[i]);
-                        }
+                        sort.printArray(unsortedInput);
+
+
 
                         break;
 
@@ -62,18 +69,20 @@ public class GUI {
 
                         System.out.println("Bubble Sort");
 
+                        sort.BubbleSort(unsortedInput);
+
+
                         break;
 
                     case 2:
 
                         System.out.println("Insertion Sort");
-
+                        sort.InsertionSort(unsortedInput);
                         break;
 
                     case 3:
 
                         System.out.println("Quick Sort");
-
                 }
 
 
@@ -84,13 +93,15 @@ public class GUI {
         randNumButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                x = Integer.parseInt(maxRand.getText());
+                unsortedInput = new int[x];
 
                 for (int i = 0; i < unsortedInput.length; i++) {
 
-                    unsortedInput[i] = new Random().nextInt(10) + 1;
+                    unsortedInput[i] = new Random().nextInt(x) + 1;
                     System.out.println(unsortedInput[i]);
                 }
-                textField.setText(Arrays.toString(unsortedInput).replaceAll("\\[", "").replaceAll("\\]", ""));
+                textField.setText(Arrays.toString(unsortedInput).replaceAll("\\[", "").replaceAll("]", ""));
 
             }
 
