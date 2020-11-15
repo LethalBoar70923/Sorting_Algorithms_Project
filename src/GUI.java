@@ -116,7 +116,7 @@ public class GUI {
                         break;
                     case 4:
                         System.out.println("Heap Sort");
-                        sort.QuickSort(unsortedInput, 0, unsortedInput.length - 1);
+                        sort.heapSort(unsortedInput, unsortedInput.length);
                         sort.printArray(unsortedInput);
 
 
