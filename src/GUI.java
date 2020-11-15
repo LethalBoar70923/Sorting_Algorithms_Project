@@ -105,7 +105,8 @@ public class GUI {
                         break;
 
                     case 3:
-
+                        sort.comparison = 0;
+                        sort.mutation = 0;
                         System.out.println("Quick Sort");
                         sort.partition(unsortedInput, 0, unsortedInput.length - 1);
                         sort.QuickSort(unsortedInput, 0, unsortedInput.length - 1);

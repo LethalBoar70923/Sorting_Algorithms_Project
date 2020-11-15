@@ -112,11 +112,12 @@ public class Sort {
       low  --> Starting index,
       high  --> Ending index */
     void QuickSort(int[] arr, int low, int high) {
+        mutation++;
         if (low < high) {
             /* pi is partitioning index, arr[pi] is
               now at right place */
             int pi = partition(arr, low, high);
-
+            comparison++;
             // Recursively sort elements before
             // partition and after partition
             QuickSort(arr, low, pi - 1);
