@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.SecureRandom;
 import java.util.Arrays;
-import java.util.Random;
 
 public class GUI {
 
@@ -142,7 +142,7 @@ public class GUI {
 
                 for (int i = 0; i < unsortedInput.length; i++) {
 
-                    unsortedInput[i] = new Random().nextInt(x - y) + y;
+                    unsortedInput[i] = new SecureRandom().nextInt(x - y) + y;
                     System.out.print(unsortedInput[i] + ",");
                 }
                 textField.setText(Arrays.toString(unsortedInput).replaceAll("\\[", "").replaceAll("]", "").replaceAll(" ", ""));
