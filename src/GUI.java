@@ -74,6 +74,7 @@ public class GUI {
                 sort.comparison = 0;
                 sort.mutation = 0;
 
+
                 switch (y) {
 
                     case 0:
@@ -121,7 +122,9 @@ public class GUI {
                         sort.printArray(unsortedInput);
                         mutationCounter.setText(String.valueOf((sort.mutation)));
                         comparisonCounter.setText(String.valueOf(sort.comparison));
+                        break;
                     case 5:
+
                         System.out.println("Shell Sort");
                         sort.ShellSort(unsortedInput);
                         sort.printArray(unsortedInput);
@@ -139,12 +142,13 @@ public class GUI {
                 x = Integer.parseInt(maxRand.getText());
                 y = Integer.parseInt(minRand.getText());
                 unsortedInput = new int[x];
-
+                SecureRandom secureRandom = new SecureRandom();
                 for (int i = 0; i < unsortedInput.length; i++) {
 
-                    unsortedInput[i] = new SecureRandom().nextInt(x - y) + y;
-                    System.out.print(unsortedInput[i] + ",");
+                    unsortedInput[i] = secureRandom.nextInt(x - y) + y;
+
                 }
+
                 textField.setText(Arrays.toString(unsortedInput).replaceAll("\\[", "").replaceAll("]", "").replaceAll(" ", ""));
 
             }

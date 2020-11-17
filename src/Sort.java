@@ -3,17 +3,19 @@ public class Sort {
     int comparison = 0;
 
     void SelectionSort(int[] arr) {
-        int n = arr.length;
+        int ArraySize = arr.length;
         comparison = 0;
         mutation = 0;
         // One by one move boundary of unsorted subarray
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < ArraySize - 1; i++) {
             // Find the minimum element in unsorted array
             int min_idx = i;
-            for (int j = i + 1; j < n; j++) {
-                if (arr[j] < arr[min_idx])
+            for (int j = i + 1; j < ArraySize; j++) {
+                if (arr[j] < arr[min_idx]) {
                     min_idx = j;
+                }
                 comparison++;
+
             }
             // Swap the found minimum element with the first
             // element
@@ -33,21 +35,27 @@ public class Sort {
         System.out.println();
     }
 
+
+
     void BubbleSort(int[] arr) {
         comparison = 0;
         mutation = 0;
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
+        int ArrayLength = arr.length;
+        for (int i = 0; i < ArrayLength - 1; i++) {
+            for (int j = 0; j < ArrayLength - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
+
                     // swap arr[j+1] and arr[j]
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
+
                     comparison++;
                 }
+
             }
             mutation++;
+
         }
     }
 
@@ -55,11 +63,10 @@ public class Sort {
     void InsertionSort(int[] arr) {
         comparison = 0;
         mutation = 0;
-        int n = arr.length;
-        for (int i = 1; i < n; ++i) {
+        int ArrayLength = arr.length;
+        for (int i = 1; i < ArrayLength; i++) {
             int key = arr[i];
             int j = i - 1;
-            mutation++;
             /* Move elements of arr[0..i-1], that are
                greater than key, to one position ahead
                of their current position */
@@ -67,11 +74,12 @@ public class Sort {
                 arr[j + 1] = arr[j];
                 j = j - 1;
                 comparison++;
+                mutation++;
             }
             arr[j + 1] = key;
+            comparison++;
         }
     }
-
 
     // Java program for implementation of QuickSort
 
@@ -162,31 +170,27 @@ public class Sort {
         for (i = size / 2 - 1; i >= 0; i--) {
 
             heapSort(arr, size, i);
-
         }
         for (i = size - 1; i >= 0; i--) {
             temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
             heapSort(arr, i, 0);
-
         }
 
     }
 
-    int ShellSort(int arr[])
-    {
+
+    void ShellSort(int[] arr) {
         int n = arr.length;
 
         // Start with a big gap, then reduce the gap
-        for (int gap = n/2; gap > 0; gap /= 2)
-        {
+        for (int gap = n / 2; gap > 0; gap /= 2) {
             // Do a gapped insertion sort for this gap size.
             // The first gap elements a[0..gap-1] are already
             // in gapped order keep adding one more element
             // until the entire array is gap sorted
-            for (int i = gap; i < n; i += 1)
-            {
+            for (int i = gap; i < n; i += 1) {
                 // add a[i] to the elements that have been gap
                 // sorted save a[i] in temp and make a hole at
                 // position i
@@ -203,7 +207,6 @@ public class Sort {
                 arr[j] = temp;
             }
         }
-        return 0;
     }
 
 
